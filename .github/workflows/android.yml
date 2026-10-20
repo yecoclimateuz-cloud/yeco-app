@@ -36,7 +36,7 @@ jobs:
           cat > capacitor.config.json <<'JSON'
           {
             "appId": "uz.yecoclimate.boshqaruv",
-            "appName": "YECO",
+            "appName": "Yeco Subsidiya",
             "webDir": "www",
             "server": {
               "url": "https://yecoclimateuz-cloud.github.io/yeco-app/",
@@ -62,16 +62,16 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon
-          cp app/build/outputs/apk/debug/app-debug.apk ../../YECO.apk
+          cp app/build/outputs/apk/debug/app-debug.apk ../../Yeco_Subsidiya.apk
 
       - uses: actions/upload-artifact@v4
         with:
-          name: YECO-apk
-          path: YECO.apk
+          name: Yeco-Subsidiya-apk
+          path: Yeco_Subsidiya.apk
 
       - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release delete apk -y --cleanup-tag || true
-          gh release create apk YECO.apk --title "YECO Boshqaruv APK (1.${{ github.run_number }})" --notes "Android uchun o'rnatish fayli. Telefonda yuklab oling va o'rnating."
+          gh release create apk Yeco_Subsidiya.apk --title "Yeco Subsidiya APK (1.${{ github.run_number }})" --notes "Android uchun o'rnatish fayli. Telefonda yuklab oling va o'rnating."
