@@ -166,19 +166,20 @@ const EMAIL_DOMAIN = "yeco.app";
 /* ============ BOSHLANG'ICH MA'LUMOTLAR ============ */
 const ROLES={ceo:"CEO",hujjat:"Hujjatchi",sotuv:"Sotuvchi",usta:"Usta"};
 const ROLE_COLOR={ceo:"#1f8f3c",hujjat:"#7a4fc0",sotuv:"#d98a0b",usta:"#2b62b8"};
+const USERS_V=2;
 const SEED_USERS=[
- {id:"u_ceo",login:"shaxzod",name:"Shaxzod",role:"ceo",h:"8319261bd1754962c77674e33558e533da41aa5fe0bec64ced79379afc2fff81"},
- {id:"u_huj",login:"hujjat",name:"Hujjatchi",role:"hujjat",h:"e962e62ece53fb9ab81cab148fb897f1c342a15688fcefe202c36b244b455d90"},
- {id:"u_s1",login:"sotuv1",name:"Sotuvchi 1",role:"sotuv",h:"8a484e1991b900f38c939d8fbc0bb0fa08d0088c2670a367e891d3da41a8c3d1"},
- {id:"u_s2",login:"sotuv2",name:"Sotuvchi 2",role:"sotuv",h:"3f4faf898d32cc78314f43d10ab54b78c44fc095f231316b12ae958ce7035091"},
- {id:"u_u1",login:"usta1",name:"Usta 1",role:"usta",h:"8058db8abb5ed0d884f8d1b245a86b9259717697c84b8f09fe3d7c956cd25751"},
- {id:"u_u2",login:"usta2",name:"Usta 2",role:"usta",h:"50b8f8a4930c2f926933b75590b065a043af1d254d31adfdb81bff3a901c420c"},
- {id:"u_u3",login:"usta3",name:"Usta 3",role:"usta",h:"41063f5efbfda9a32e5ea3a8c867959a6389f1e405e299b33984fda78595cef9"},
- {id:"u_u4",login:"usta4",name:"Usta 4",role:"usta",h:"585eebf0f8effc93343bbb590a3584605d6723122cb6234b764bc5600f20c925"},
- {id:"u_u5",login:"usta5",name:"Usta 5",role:"usta",h:"ea20b16343c7da20b71868d0c81637594d544048e9d3e0ce2afaa60089922bb0"},
- {id:"u_u6",login:"usta6",name:"Usta 6",role:"usta",h:"e7d05c83991e48c5d739ed1473d08988040dc3c7c012abd59de28ea5f9b6ade2"},
- {id:"u_u7",login:"usta7",name:"Usta 7",role:"usta",h:"d735fa737ea0f0e3cca3213638b383e92575bf0a31930dc4fdda83f1f035c3fc"},
- {id:"u_u8",login:"usta8",name:"Usta 8",role:"usta",h:"a4d66589e20056cb415f9e13f0cbfca059813fb7dbb754fabc0b0404f9650567"}
+ {"id": "u_ceo", "login": "yeco.ceo", "name": "Shaxzod", "role": "ceo", "salt": "9010b25243f09ecc91253d5b6aa4a7c9", "h": "f3d322324c932d8defb609ebe1fc766fa443ac9d2b23118cd29524041fb5a634"},
+ {"id": "u_huj", "login": "yeco.hujjat", "name": "Hujjatchi", "role": "hujjat", "salt": "0a65ad817e52b96854bd18ff5cfb9f98", "h": "1b8eafa9e550772010a7950fc32e8391cc19d916f67bb9bca52fb5800a790131"},
+ {"id": "u_s1", "login": "yeco.sotuv1", "name": "Sotuvchi 1", "role": "sotuv", "salt": "5c242607758213a194f70a44efd7b0ca", "h": "25823a4a507d985d34d6268b1e40143d4635196b8c5af1b725f492026ad214e7"},
+ {"id": "u_s2", "login": "yeco.sotuv2", "name": "Sotuvchi 2", "role": "sotuv", "salt": "02e3c40301e926b4374a8d8abf7995fb", "h": "542c68dd7bcc828d426c0cac36bec2fadc4615b8a1c9ee98303fabb7c04127c5"},
+ {"id": "u_u1", "login": "yeco.usta1", "name": "Usta 1", "role": "usta", "salt": "6a6048f7fbe053b92a109b3571fc6b70", "h": "00b5a32c8d87df77d535c2977a769a3711ea8fab25da6869874c4620df280ee7"},
+ {"id": "u_u2", "login": "yeco.usta2", "name": "Usta 2", "role": "usta", "salt": "fb80cee65daccdfca50829eee6f05997", "h": "02bf3b6aadd6fc141340a529cb20611154080831d5ca11d327de9fc1961d7055"},
+ {"id": "u_u3", "login": "yeco.usta3", "name": "Usta 3", "role": "usta", "salt": "75b7fc2c9947051b97c8247c9d93ba7a", "h": "3bf6014c40af78f60f4d8d1ac9f76add810877dfb5df58d1f07aa8fec07137f6"},
+ {"id": "u_u4", "login": "yeco.usta4", "name": "Usta 4", "role": "usta", "salt": "d4c5b9e1fc94739c66de1d6c5d9fa006", "h": "1fd4e6fd8f418432dc53dd1fac224d3c934492ae62c68aa7ff7f5bf6c46691b9"},
+ {"id": "u_u5", "login": "yeco.usta5", "name": "Usta 5", "role": "usta", "salt": "56f4d1935379f1db7fa37aa1ca8221e6", "h": "50ad2e123daf17e369e4ba44416b0a684dce5dc85d6c40c0b1d9f1881eb8da39"},
+ {"id": "u_u6", "login": "yeco.usta6", "name": "Usta 6", "role": "usta", "salt": "b24bccd083cf77fe69998a97d66a6540", "h": "c24a32b84950484f3249d1032c0b1a9dc6bbe142f9ca3e8b10903bd45916336d"},
+ {"id": "u_u7", "login": "yeco.usta7", "name": "Usta 7", "role": "usta", "salt": "bdd1ff673843422943f0b55d76006780", "h": "e0d78386dc96eae8c2062122350749d62d891aae0771dbfb957e2140d6e548cc"},
+ {"id": "u_u8", "login": "yeco.usta8", "name": "Usta 8", "role": "usta", "salt": "74ef649919b91e3186d9d01682155127", "h": "7b2fcf27814e5aa67feae4d5cb8cfa3c85afe72db994f4b97b6ac0de3a9af74f"}
 ];
 const P0="2026-10-01";
 const STOCK={r290_12:[4,2],r290_16:[2,3],r290_18:[5,2],r290_24:[3,2],r290_50:[1,1],r32_12:[7,2],r32_16:[6,2],r32_18:[4,2],r32_24:[3,2],r32_34:[2,1],r32_50:[1,1],b100:[9,4],b200:[6,4],b300:[3,2],bw210:[3,2],bw320:[2,1],bi150:[4,2],bi200:[4,2],aura_m3:[12,6],pol35:[20,8]};
@@ -218,6 +219,10 @@ const fmtUsd=n=>(Math.round(n*10)/10).toLocaleString("ru-RU",{maximumFractionDig
 const dt=t=>{const d=new Date(t);return d.toLocaleDateString("ru-RU",{day:"2-digit",month:"2-digit"})+", "+d.toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"})};
 const dshort=t=>{if(!t)return"—";const d=new Date(t);return d.toLocaleDateString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric"})};
 const DAY=864e5;
+async function pbkdf(pass,saltHex){const k=await crypto.subtle.importKey("raw",new TextEncoder().encode(pass),"PBKDF2",false,["deriveBits"]);
+  const salt=new Uint8Array(saltHex.match(/../g).map(h=>parseInt(h,16)));const b=await crypto.subtle.deriveBits({name:"PBKDF2",hash:"SHA-256",salt,iterations:150000},k,256);
+  return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+const newSalt=()=>[...crypto.getRandomValues(new Uint8Array(16))].map(x=>x.toString(16).padStart(2,"0")).join("");
 async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
 function ls(k,v){try{if(v===undefined){const r=localStorage.getItem(k);return r?JSON.parse(r):null}localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}}
 function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2400)}
@@ -235,11 +240,13 @@ const LocalStore={
   mode:"demo",
   async init(){
     for(const c of COLS){cache[c]=ls("yeco_"+c)||[]}
+    if(cache.users.length&&ls("yeco_users_v")!==USERS_V){for(const su of SEED_USERS){const u=cache.users.find(x=>x.id===su.id);if(u){u.login=su.login;u.salt=su.salt;u.h=su.h}else cache.users.push({...su})}ls("yeco_users",cache.users);ls("yeco_session","")}
+    ls("yeco_users_v",USERS_V);
     if(!cache.users.length){cache.users=SEED_USERS.map(u=>({...u}));cache.products=JSON.parse(JSON.stringify(SEED_PRODUCTS));cache.settings=[SEED_SETTINGS];seedDemo();COLS.forEach(c=>ls("yeco_"+c,cache[c]))}
     await ensureCatalog(this);
   },
-  async login(login,pass){const u=cache.users.find(x=>x.login===login.trim().toLowerCase());if(!u)return null;const h=await sha(u.login+":"+pass);return h===u.h?u:null},
-  async setPassword(userId,pass){const u=cache.users.find(x=>x.id===userId);u.h=await sha(u.login+":"+pass);await this.put("users",u)},
+  async login(login,pass){const u=cache.users.find(x=>x.login===login.trim().toLowerCase());if(!u||!u.salt)return null;const h=await pbkdf(pass,u.salt);return h===u.h?u:null},
+  async setPassword(userId,pass){const u=cache.users.find(x=>x.id===userId);u.salt=newSalt();u.h=await pbkdf(pass,u.salt);await this.put("users",u)},
   async put(col,obj){const a=cache[col];const i=a.findIndex(x=>x.id===obj.id);if(i<0)a.push(obj);else a[i]=obj;ls("yeco_"+col,a)},
   async del(col,id){cache[col]=cache[col].filter(x=>x.id!==id);ls("yeco_"+col,cache[col])},
   async putFile(path,blob){await idb.put(path,blob);return path},
@@ -269,7 +276,7 @@ const SupaStore={
   async login(login,pass){
     const {error}=await this.sb.auth.signInWithPassword({email:login.trim().toLowerCase()+"@"+EMAIL_DOMAIN,password:pass});
     if(error)return null;await this.loadAll();
-    if(!cache.users.length){for(const u of SEED_USERS){const {h,...x}=u;await this.put("users",x)}}
+    if(!cache.users.length){for(const u of SEED_USERS){const {h,salt,...x}=u;await this.put("users",x)}}
     await ensureCatalog(this);
     if(!cache.settings.length)await this.put("settings",SEED_SETTINGS);
     return cache.users.find(u=>u.login===login.trim().toLowerCase())||null},
