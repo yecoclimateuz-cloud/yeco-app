@@ -242,7 +242,8 @@ const LocalStore={
     for(const c of COLS){cache[c]=ls("yeco_"+c)||[]}
     if(cache.users.length&&ls("yeco_users_v")!==USERS_V){for(const su of SEED_USERS){const u=cache.users.find(x=>x.id===su.id);if(u){u.login=su.login;u.salt=su.salt;u.h=su.h}else cache.users.push({...su})}ls("yeco_users",cache.users);ls("yeco_session","")}
     ls("yeco_users_v",USERS_V);
-    if(!cache.users.length){cache.users=SEED_USERS.map(u=>({...u}));cache.products=JSON.parse(JSON.stringify(SEED_PRODUCTS));cache.settings=[SEED_SETTINGS];seedDemo();COLS.forEach(c=>ls("yeco_"+c,cache[c]))}
+    if(!ls("yeco_nodemo")){for(const c of ["orders","issues"]){cache[c]=(cache[c]||[]).filter(x=>!x.demo);ls("yeco_"+c,cache[c])}ls("yeco_nodemo",1)}
+    if(!cache.users.length){cache.users=SEED_USERS.map(u=>({...u}));cache.products=JSON.parse(JSON.stringify(SEED_PRODUCTS));cache.settings=[SEED_SETTINGS];COLS.forEach(c=>ls("yeco_"+c,cache[c]))}
     await ensureCatalog(this);
   },
   async login(login,pass){const u=cache.users.find(x=>x.login===login.trim().toLowerCase());if(!u||!u.salt)return null;const h=await pbkdf(pass,u.salt);return h===u.h?u:null},
@@ -402,7 +403,6 @@ function viewLogin(){
   return `<div class="login">
   <img src="logo.png" alt="YECO Climate">
   <div class="tag-line">Subsidiya va servis boshqaruvi</div>
-  ${DB.mode==="demo"?`<div class="demo">Sinov rejimi: ma'lumotlar faqat shu qurilmada saqlanadi</div>`:""}
   <form id="lf" class="fld" style="gap:12px" onsubmit="doLogin(event)">
    <div class="fld"><label for="lg">Login</label><input class="inp" id="lg" autocomplete="username" autocapitalize="none" required></div>
    <div class="fld"><label for="pw">Parol</label><input class="inp" id="pw" type="password" autocomplete="current-password" required></div>
@@ -448,7 +448,6 @@ const TABS={
   const mine=isS?cache.orders.filter(o=>o.sellerId===state.me.id):[];
   const urgent=sortOrders([...late,...soon]).slice(0,5);
   return hdr(state.me.name,greet())+`<main>
-  ${DB.mode==="demo"?`<div class="demo">Sinov rejimi · namunaviy mijozlar ko'rsatilgan</div>`:""}
   ${isS?`<div class="btns"><button class="btn" onclick="openSub('calc')">🧮 Kalkulyator</button><button class="btn dark" onclick="openSub('new')">＋ Yangi mijoz</button></div>`:""}
   <div class="kpis">
    <button class="kpi" onclick="state.filter='all';openSub('list')"><b>${act.length}</b><span>Faol buyurtmalar</span></button>
@@ -680,7 +679,6 @@ const VIEWS={
     <button class="btn">Saqlash</button></form>
    ${isRole("ceo")?`<button class="btn ghost" onclick="go('staff')">👥 Xodimlar (${cache.users.length})</button><button class="btn ghost" onclick="go('settings')">⚙ Kurs va subsidiya</button><button class="btn ghost" onclick="openSub('prices')">💲 Mahsulotlar va narxlar</button>`:""}
    <button class="btn red" onclick="logout()">Chiqish</button>
-   ${DB.mode==="demo"?`<button class="btn ghost sm" style="align-self:center" onclick="resetDemo()">Sinov ma'lumotlarini tozalash</button>`:""}
   </main>`
  },
  report(){
