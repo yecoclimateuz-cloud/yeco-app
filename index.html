@@ -4,7 +4,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Yeco Subsidiya">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
 <link rel="icon" href="icon-192.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <style>
@@ -1101,13 +1103,32 @@ async function orderKp(id,btn){const o=findO(id);let k=o.kpId&&cache.kps.find(x=
   if(!k){k={id:"k"+uid(),number:nextKpNo(),client:o.client,phone:o.phone,address:o.address,calc:o.calc,by:o.sellerId||state.me.id,at:Date.now(),orderId:o.id};await DB.put("kps",k);o.kpId=k.id;log(o,"KP №"+String(k.number).padStart(4,"0")+" tayyorlandi");await DB.put("orders",o)}
   await kpDeliver(k,btn);render()}
 
+/* ============ iPhone o'rnatish yo'riqnomasi ============ */
+function iosInstallHint(){
+  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+  const standalone=window.navigator.standalone===true||matchMedia("(display-mode: standalone)").matches;
+  if(!ios||standalone||window.Capacitor||location.hostname.endsWith("claude.ai"))return;
+  try{if(Date.now()-(+localStorage.getItem("yeco_ios_hint")||0)<3*DAY)return}catch(e){}
+  const safari=/safari/i.test(navigator.userAgent)&&!/crios|fxios|edgios|yabrowser|telegram|instagram|fbav/i.test(navigator.userAgent);
+  const share='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-4px"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+  sheet(`<h2>iPhone'ga o'rnatish</h2>
+   ${safari?`<div class="list">
+    <div class="row"><div class="n">1. Pastdagi ${share} <b>Ulashish</b> tugmasini bosing</div></div>
+    <div class="row"><div class="n">2. <b>«Bosh ekranga» (Add to Home Screen)</b> ni tanlang</div></div>
+    <div class="row"><div class="n">3. O'ng yuqorida <b>«Qo'shish» (Add)</b> ni bosing</div></div></div>
+    <div class="note n-g">Ekranda <b>Yeco Subsidiya</b> ikonkasi paydo bo'ladi. Dasturni shu ikonka orqali oching.</div>`
+   :`<div class="note n-am">iPhone'da dastur faqat <b>Safari</b> orqali o'rnatiladi. Havolani nusxalab, Safari'da oching:</div>
+    <div class="card" style="font-weight:700;overflow-wrap:anywhere">${esc(location.href.split("#")[0])}</div>
+    <button class="btn" onclick="navigator.clipboard&&navigator.clipboard.writeText(location.href.split('#')[0]).then(()=>toast('Havola nusxalandi')).catch(()=>{})">Havolani nusxalash</button>`}
+   <button class="btn ghost" onclick="try{localStorage.setItem('yeco_ios_hint',Date.now())}catch(e){};closeSheet()">Keyinroq</button>`)}
+
 /* ============ ISHGA TUSHIRISH ============ */
 (async function(){
   $("#app").innerHTML=`<div class="empty" style="padding-top:40vh">Yuklanmoqda…</div>`;
   try{await DB.init()}catch(e){$("#app").innerHTML=`<div class="login"><img src="logo.png" alt="YECO"><div class="err" style="text-align:center">Server bilan aloqa yo'q. Internetni tekshirib, sahifani yangilang.</div></div>`;return}
   if(DB.mode==="live"){state.me=await DB.session()}else{const sid=ls("yeco_session");state.me=sid?user(sid)||null:null}
   if(state.me)state.tab=tabsFor(state.me.role)[0][0];
-  render();
+  render();setTimeout(iosInstallHint,800);
   if(DB.mode==="live")document.addEventListener("visibilitychange",()=>{if(!document.hidden&&state.me)DB.loadAll().then(render).catch(()=>{})});
   if("serviceWorker" in navigator&&!window.Capacitor&&location.protocol==="https:"&&!location.hostname.endsWith("claude.ai")){navigator.serviceWorker.register("sw.js").catch(()=>{})}
   setInterval(()=>{if(state.me)liveRender()},60000);
